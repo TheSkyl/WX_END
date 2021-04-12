@@ -9,11 +9,14 @@
         <outputRelativeToContentRoot value="true" />
         <module name="lib" />
         <module name="auth_server" />
+        <module name="wx_auth" />
+        <module name="wx_lib" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="auth_server" target="1.8" />
       <module name="lib" target="8" />
+      <module name="wx_auth" target="8" />
       <module name="Wx_lib" target="8" />
       <module name="wx_lib" target="8" />
       <module name="WxEnd" target="1.8" />
@@ -25,6 +28,7 @@
       <module name="Wx_lib" options="-parameters" />
       <module name="auth_server" options="-parameters" />
       <module name="lib" options="-parameters" />
+      <module name="wx_auth" options="-parameters" />
       <module name="wx_lib" options="-parameters" />
     </option>
   </component>

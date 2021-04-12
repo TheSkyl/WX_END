@@ -5,6 +5,8 @@
       <module fileurl="file://$PROJECT_DIR$/WxEnd.iml" filepath="$PROJECT_DIR$/WxEnd.iml" />
       <module fileurl="file://$PROJECT_DIR$/auth_server/auth_server.iml" filepath="$PROJECT_DIR$/auth_server/auth_server.iml" />
       <module fileurl="file://$PROJECT_DIR$/lib/lib.iml" filepath="$PROJECT_DIR$/lib/lib.iml" />
+      <module fileurl="file://$PROJECT_DIR$/wx_auth/wx_auth.iml" filepath="$PROJECT_DIR$/wx_auth/wx_auth.iml" />
+      <module fileurl="file://$PROJECT_DIR$/wx_lib/wx_lib.iml" filepath="$PROJECT_DIR$/wx_lib/wx_lib.iml" />
     </modules>
   </component>
 </project>

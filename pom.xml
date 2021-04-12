@@ -6,8 +6,9 @@
     <packaging>pom</packaging>
     <modules>
         <module>auth_server</module>
-        <module>wx_lib</module>
         <module>lib</module>
+        <module>wx_auth</module>
+        <module>wx_lib</module>
     </modules>
 
     <parent>

@@ -5,12 +5,12 @@
       <list>
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/authserver/pom.xml" />
+        <option value="$PROJECT_DIR$/wx_lib/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">
       <set>
         <option value="$PROJECT_DIR$/Wx_lib/pom.xml" />
-        <option value="$PROJECT_DIR$/wx_lib/pom.xml" />
       </set>
     </option>
   </component>
