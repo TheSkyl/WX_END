@@ -1,0 +1,22 @@
+{
+  "groups": [
+    {
+      "name": "wx.login",
+      "type": "com.test.wx_lib.wx.WxConstant",
+      "sourceType": "com.test.wx_lib.wx.WxConstant"
+    }
+  ],
+  "properties": [
+    {
+      "name": "wx.login.appid",
+      "type": "java.lang.String",
+      "sourceType": "com.test.wx_lib.wx.WxConstant"
+    },
+    {
+      "name": "wx.login.secret",
+      "type": "java.lang.String",
+      "sourceType": "com.test.wx_lib.wx.WxConstant"
+    }
+  ],
+  "hints": []
+}
