@@ -12,11 +12,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     //安全拦截机制
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-
-        http.csrf().disable()
-                .authorizeRequests()
-//                .antMatchers("/test/index").hasAnyAuthority("p2")
-                .antMatchers("/test/**").authenticated()
-                .anyRequest().permitAll();
+//
+//        http.csrf().disable()
+//                .authorizeRequests()
+////                .antMatchers("/test/index").hasAnyAuthority("p2")
+//                .antMatchers("/test/**").authenticated()
+//                .anyRequest().permitAll();
     }
 }

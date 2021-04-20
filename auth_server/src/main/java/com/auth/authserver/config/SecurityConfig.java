@@ -3,14 +3,17 @@ package com.auth.authserver.config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
+import org.springframework.web.cors.CorsUtils;
 
 import javax.annotation.Resource;
 
@@ -60,14 +63,33 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //                .and().csrf().disable(); //关闭csrf防护
 //        http.exceptionHandling().accessDeniedPage("/403.html"); //没有权限就跳转到403页面
         //安全拦截机制
-        http.csrf().disable()
+        http
                 .authorizeRequests()
-                .antMatchers("/test/admin").hasRole("p2")
-                .antMatchers("/test/indexs").hasRole("p1")
-                .antMatchers("/test/manager").hasRole("p3")
+                .antMatchers("/actuator/**", "/login", "/exit", "/index","/login/**","/oauth/**", "/favicon.ico", "/swagger/**", "/oauth/token","/").permitAll()
+//                .antMatchers(HttpMethod.OPTIONS,"/**")
+//                .requestMatchers(CorsUtils::isPreFlightRequest).permitAll()
+//                .permitAll()
+                .anyRequest().authenticated()
                 .and()
-                .formLogin();
-
+                .formLogin()
+                .and()
+                .cors().and().csrf().disable();
     }
+
+    @Override
+    public void configure(WebSecurity web) throws Exception {
+
+        web.ignoring().antMatchers(HttpMethod.OPTIONS, "/**");
+        web.ignoring().antMatchers("/actuator/health","/favicon.ico", "/css/**", "/js/**","/images/**", "/fonts/**","/dist/**");
+    }
+//    @Override
+//    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+//
+//        //如果将此设置为
+//        //auth.parentAuthenticationManager(authenticationManager);
+//        //则出现无限循环问题，暂时设置为null
+//        auth.parentAuthenticationManager(null);
+//        auth.userDetailsService(userDetailsService);
+//    }
 
 }

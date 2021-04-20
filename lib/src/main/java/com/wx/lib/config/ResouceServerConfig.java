@@ -16,7 +16,7 @@ import org.springframework.security.oauth2.provider.token.TokenStore;
 @EnableResourceServer   //此注解表示这是一个资源服务
 public class ResouceServerConfig extends ResourceServerConfigurerAdapter {
 
-    private  static final String RESOURCE_ID ="RES"; //资源服务id
+    private  static final String RESOURCE_ID ="res1"; //资源服务id
 
     private static final String SIGNING_KEY="AUTH"; //密钥
 
@@ -46,7 +46,7 @@ public class ResouceServerConfig extends ResourceServerConfigurerAdapter {
 
         http
                 .authorizeRequests()
-                .antMatchers("/**").access("#oauth2.hasScope('all')")   //校验令牌范围是不是all
+                .antMatchers("/**").access("#oauth2.hasScope('ROLE_ADMIN')")   //校验令牌范围是不是all
                 .and().csrf().disable()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
     }
@@ -62,7 +62,7 @@ public class ResouceServerConfig extends ResourceServerConfigurerAdapter {
 //        RemoteTokenServices tokenServices = new RemoteTokenServices();
 //        tokenServices.setCheckTokenEndpointUrl("http://localhost:53020/oauth/check_token"); //url
 //        tokenServices.setClientId("c1");    //客户端id
-//        tokenServices.setClientSecret("serr");    //密钥
+//        tokenServices.setClientSecret("secret");    //密钥
 //        return tokenServices;
 //    }
 

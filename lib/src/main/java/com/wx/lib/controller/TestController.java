@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/test")
 public class TestController {
 
     @PreAuthorize("hasAnyAuthority('ROLE_p1')") //拥有p1才可以访问

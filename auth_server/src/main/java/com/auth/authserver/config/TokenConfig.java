@@ -1,5 +1,6 @@
 package com.auth.authserver.config;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.oauth2.provider.token.TokenStore;
@@ -12,7 +13,7 @@ public class TokenConfig {
 
     private final String SIGNING_KEY="AUTH";
 
-    //内存存储令牌
+//    内存存储令牌
 //    @Bean
 //    public TokenStore tokenStore(){
 //        return new InMemoryTokenStore();
@@ -27,6 +28,7 @@ public class TokenConfig {
 
         JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
         converter.setSigningKey(SIGNING_KEY);   //对称密钥，资源服务器使用该密钥进行验证
+        converter.setAccessTokenConverter(new AuthorizationServer.CustomAccessTokenConverter()); //将定制的AccessToken 转换器添加到JWT
         return converter;
 
     }

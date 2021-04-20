@@ -5,6 +5,7 @@
       <list>
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/authserver/pom.xml" />
+        <option value="$PROJECT_DIR$/wx_auth/pom.xml" />
         <option value="$PROJECT_DIR$/wx_lib/pom.xml" />
       </list>
     </option>
