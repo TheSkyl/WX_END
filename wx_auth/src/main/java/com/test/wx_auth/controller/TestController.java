@@ -2,24 +2,16 @@ package com.test.wx_auth.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.test.wx_auth.utils.HttpClientUtils;
-import com.test.wx_lib.model.WxUser;
-import com.test.wx_lib.service.WxUserService;
-import com.test.wx_lib.utils.UnifyResult;
-import com.test.wx_lib.utils.WxUtils;
-import com.test.wx_lib.vo.WxLoginVO;
-import com.test.wx_lib.wx.WxConstant;
+import com.wx.wx_lib.service.WxUserService;
+import com.wx.wx_lib.utils.UnifyResult;
+import com.wx.wx_lib.vo.WxLoginVO;
+import com.wx.wx_lib.wx.WxConstant;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.security.access.annotation.Secured;
 //import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-
-import javax.servlet.http.HttpSession;
-import java.sql.Wrapper;
 
 @Slf4j
 @RestController

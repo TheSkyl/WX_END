@@ -1,8 +1,8 @@
 package com.test.wx_auth.controller;
 
-import com.test.wx_lib.model.Novel;
-import com.test.wx_lib.service.INovelService;
-import com.test.wx_lib.utils.UnifyResult;
+import com.wx.wx_lib.model.Novel;
+import com.wx.wx_lib.service.INovelService;
+import com.wx.wx_lib.utils.UnifyResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

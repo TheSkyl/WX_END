@@ -13,7 +13,6 @@ import org.springframework.security.oauth2.provider.token.ResourceServerTokenSer
 import org.springframework.security.oauth2.provider.token.TokenStore;
 
 @Configuration
-@EnableResourceServer   //此注解表示这是一个资源服务
 public class ResouceServerConfig extends ResourceServerConfigurerAdapter {
 
     private  static final String RESOURCE_ID ="res1"; //资源服务id

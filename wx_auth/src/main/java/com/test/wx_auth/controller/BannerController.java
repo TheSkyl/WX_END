@@ -1,10 +1,9 @@
 package com.test.wx_auth.controller;
 
-import com.test.wx_lib.model.Banner;
-import com.test.wx_lib.service.BannerService;
-import com.test.wx_lib.utils.UnifyResult;
+import com.wx.wx_lib.model.Banner;
+import com.wx.wx_lib.service.BannerService;
+import com.wx.wx_lib.utils.UnifyResult;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

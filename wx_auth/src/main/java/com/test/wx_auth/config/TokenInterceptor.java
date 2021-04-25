@@ -1,9 +1,7 @@
 package com.test.wx_auth.config;
 
 
-import com.test.wx_auth.exceptionhandler.UnauthorizedException;
-import com.test.wx_lib.utils.JwtUtils;
-import org.apache.commons.lang3.StringUtils;
+import com.wx.wx_lib.utils.JwtUtils;
 import org.springframework.web.servlet.HandlerInterceptor;
 
 import javax.servlet.http.HttpServletRequest;
