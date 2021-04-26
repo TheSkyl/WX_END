@@ -21,6 +21,16 @@ public abstract class BaseApiController {
     protected Users user;
     protected String uid;
 
+
+    /**
+     * 自定义CustomerAccessTokenConverter 这个类的作用主要用于AccessToken的转换，
+     * 默认使用DefaultAccessTokenConverter 这个装换器
+     * DefaultAccessTokenConverter有个UserAuthenticationConverter，这个转换器作用是把用户的信息放入token中，
+     * 默认只是放入username
+     * <p>
+     * 自定义了下这个方法，加入了额外的信息
+     * <p>
+     */
     @ModelAttribute
     public void getSessionUser(Authentication authentication) {
         if (authentication != null && authentication.getDetails() != null) {

@@ -104,20 +104,20 @@ public class AuthorizationServer extends AuthorizationServerConfigurerAdapter {
         return new CustomTokenEnhancer();
     }
 
-    public static class CustomAccessTokenConverter extends DefaultAccessTokenConverter implements JwtAccessTokenConverterConfigurer {
-
-        @Override
-        public OAuth2Authentication extractAuthentication(Map<String, ?> map) {
-            OAuth2Authentication authentication = super.extractAuthentication(map);
-            authentication.setDetails(map);
-            return authentication;
-        }
-
-        @Override
-        public void configure(JwtAccessTokenConverter jwtAccessTokenConverter) {
-            jwtAccessTokenConverter.setAccessTokenConverter(this);
-        }
-    }
+//    public static class CustomAccessTokenConverter extends DefaultAccessTokenConverter implements JwtAccessTokenConverterConfigurer {
+//
+//        @Override
+//        public OAuth2Authentication extractAuthentication(Map<String, ?> map) {
+//            OAuth2Authentication authentication = super.extractAuthentication(map);
+//            authentication.setDetails(map);
+//            return authentication;
+//        }
+//
+//        @Override
+//        public void configure(JwtAccessTokenConverter jwtAccessTokenConverter) {
+//            jwtAccessTokenConverter.setAccessTokenConverter(this);
+//        }
+//    }
 
     /**
      * 开启jwt令牌服务

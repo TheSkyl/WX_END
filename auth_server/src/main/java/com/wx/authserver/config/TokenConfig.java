@@ -26,7 +26,7 @@ public class TokenConfig {
 
         JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
         converter.setSigningKey(SIGNING_KEY);   //对称密钥，资源服务器使用该密钥进行验证
-        converter.setAccessTokenConverter(new AuthorizationServer.CustomAccessTokenConverter()); //将定制的AccessToken 转换器添加到JWT
+        converter.setAccessTokenConverter(new com.auth.authserver.config.CustomAccessTokenConverter()); //将定制的AccessToken 转换器添加到JWT
         return converter;
 
     }
