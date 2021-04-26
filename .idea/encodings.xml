@@ -4,7 +4,6 @@
     <file url="file://$PROJECT_DIR$/auth_server/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/lib/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/wx_auth/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/wx_auth/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/wx_lib/src/main/java" charset="UTF-8" />
   </component>
 </project>
