@@ -17,8 +17,6 @@ public class ResouceServerConfig extends ResourceServerConfigurerAdapter {
 
     private  static final String RESOURCE_ID ="res1"; //资源服务id
 
-    private static final String SIGNING_KEY="AUTH"; //密钥
-
     @Autowired
     TokenStore tokenStore;
 
@@ -45,6 +43,8 @@ public class ResouceServerConfig extends ResourceServerConfigurerAdapter {
 
         http
                 .authorizeRequests()
+                .antMatchers("/profile/**","/banner/**").permitAll()
+                .antMatchers("/index").permitAll()
                 .antMatchers("/**").access("#oauth2.hasScope('ROLE_ADMIN')")   //校验令牌范围是不是all
                 .and().csrf().disable()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
