@@ -61,4 +61,4 @@ public interface NovelMapper extends BaseMapper<Novel> {
      * @return 结果
      */
     public int deleteNovelByIds(String[] ids);
-    }
+}

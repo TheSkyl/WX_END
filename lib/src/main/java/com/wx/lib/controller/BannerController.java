@@ -5,9 +5,8 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.wx.wx_lib.model.Banner;
 import com.wx.wx_lib.service.BannerService;
 import com.wx.wx_lib.utils.UnifyResult;
-import io.swagger.models.auth.In;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.ComponentScan;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -19,13 +18,13 @@ public class BannerController {
 
     @RequestMapping("/page")
     public UnifyResult getAllByPage(Integer pageNum, Integer pageSize, String keyword){
-        Page<Banner> page = new Page<>(1,2);
+        Page<Banner> page = new Page<>(pageNum,pageSize);
         IPage<Banner> iPage = service.page(page);
         return UnifyResult.ok().data("page",iPage);
     }
 
     @PostMapping("/add")
-    public UnifyResult save(Banner banner){
+    public UnifyResult save(@Validated @RequestBody Banner banner){
         service.save(banner);
         return UnifyResult.ok();
     }
@@ -36,14 +35,14 @@ public class BannerController {
         return UnifyResult.ok().data("banner",service.getById(id));
     }
 
-    @DeleteMapping("/delete/{id}")
-    public UnifyResult delById(Integer id){
+    @DeleteMapping("/delById/{id}")
+    public UnifyResult delById(@PathVariable Integer id){
         service.removeById(id);
         return UnifyResult.ok();
     }
 
     @PutMapping("/update")
-    public UnifyResult update(Banner banner){
+    public UnifyResult update(@Validated @RequestBody Banner banner){
         service.updateById(banner);
         return UnifyResult.ok();
     }

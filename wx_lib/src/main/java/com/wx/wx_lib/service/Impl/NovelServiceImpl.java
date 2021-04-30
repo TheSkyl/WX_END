@@ -1,11 +1,18 @@
 package com.wx.wx_lib.service.Impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.wx.wx_lib.dao.ArticleDao;
 import com.wx.wx_lib.dao.NovelMapper;
+import com.wx.wx_lib.model.Article;
 import com.wx.wx_lib.model.Novel;
 import com.wx.wx_lib.service.INovelService;
+import io.swagger.models.auth.In;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Map;
 
 /**
  * 小说Service业务层处理
@@ -15,73 +22,38 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class NovelServiceImpl extends ServiceImpl<NovelMapper, Novel> implements INovelService {
-    @Autowired
-    private NovelMapper novelMapper;
 
-//    /**
-//     * 查询小说
-//     *
-//     * @param id 小说ID
-//     * @return 小说
-//     */
-//    @Override
-//    public Novel selectNovelById(Long id) {
-//        return novelMapper.selectNovelById(id);
-//    }
-//
-//    /**
-//     * 查询小说列表
-//     *
-//     * @param novel 小说
-//     * @return 小说
-//     */
-//    @Override
-//    public List<Novel> selectNovelList(Novel novel) {
-//        return novelMapper.selectNovelList(novel);
-//    }
-//
-//    /**
-//     * 新增小说
-//     *
-//     * @param novel 小说
-//     * @return 结果
-//     */
-//    @Override
-//    public int insertNovel(Novel novel) {
-//        novel.setCreateTime(DateUtils.getNowDate());
-//        return novelMapper.insertNovel(novel);
-//    }
-//
-//    /**
-//     * 修改小说
-//     *
-//     * @param novel 小说
-//     * @return 结果
-//     */
-//    @Override
-//    public int updateNovel(Novel novel) {
-//        return novelMapper.updateNovel(novel);
-//    }
-//
-//    /**
-//     * 删除小说对象
-//     *
-//     * @param ids 需要删除的数据ID
-//     * @return 结果
-//     */
-//    @Override
-//    public int deleteNovelByIds(String ids) {
-//        return novelMapper.deleteNovelByIds(Convert.toStrArray(ids));
-//    }
-//
-//    /**
-//     * 删除小说信息
-//     *
-//     * @param id 小说ID
-//     * @return 结果
-//     */
-//    @Override
-//    public int deleteNovelById(Long id) {
-//        return novelMapper.deleteNovelById(id);
-//    }
+    @Autowired
+    ArticleDao articleDao;
+
+    /**
+     * 先查询所有小说，将二级结果封装到一级的节点中，形成树结构目录
+     *
+     * @param articleMap key是对应小说的id,value对应小说的章节集合
+     * @return
+     */
+    @Override
+    public List<Novel> getAll(Map<Integer, List<Article>> articleMap) {
+        List<Novel> novelList = baseMapper.selectList(null);
+//        novelList.get(0).setChildren(articleMap.get(64));
+//        for (int i = 0; i < novelList.size(); i++) {
+//            if (articleMap.containsKey(novelList.get(i).getId()) == true){
+//                novelList.get(i).setChildren(articleMap.get(novelList.get(i).getId()));
+//            }
+//        }
+        novelList.forEach(novelLists -> {
+            if (articleMap.containsKey(novelLists.getId())) {
+                System.out.println(articleMap.get(novelLists.getId()));
+                novelLists.setChildren(articleMap.get(novelLists.getId()));
+            }
+        });
+        return novelList;
+    }
+
+    @Override
+    public void deleteById(Integer id) {
+        articleDao.delete(new QueryWrapper<Article>().eq("novel_id",id));
+        baseMapper.deleteById(id);
+    }
+
 }

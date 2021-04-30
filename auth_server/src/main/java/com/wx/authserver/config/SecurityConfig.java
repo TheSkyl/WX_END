@@ -65,7 +65,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         //安全拦截机制
         http
                 .authorizeRequests()
-                .antMatchers("/actuator/**", "/login", "/exit", "/index","/login/**","/oauth/**", "/favicon.ico", "/swagger/**", "/oauth/token","/").permitAll()
+                .antMatchers("/actuator/**", "/login", "/exit", "/index","/login/**","/oauth/**", "/favicon.ico", "/swagger/**", "/oauth/token","/profile/**").permitAll()
 //                .antMatchers(HttpMethod.OPTIONS,"/**")
 //                .requestMatchers(CorsUtils::isPreFlightRequest).permitAll()
 //                .permitAll()

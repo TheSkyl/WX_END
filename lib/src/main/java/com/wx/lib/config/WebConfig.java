@@ -23,8 +23,10 @@ public class WebConfig extends WebMvcConfigurationSupport {
 
         registry.addResourceHandler(("/profile/novel/**"))
                 .addResourceLocations("file:"+uploadFolderNovel);
-        registry.addResourceHandler("/profile/banner/**")
+        registry.addResourceHandler("profile/banner/**")
                 .addResourceLocations("file:"+uploadFolderBanner);
 
     }
 }
+
+

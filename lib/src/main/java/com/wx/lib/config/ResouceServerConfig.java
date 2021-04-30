@@ -3,7 +3,9 @@ package com.wx.lib.config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfigurerAdapter;
@@ -11,6 +13,9 @@ import org.springframework.security.oauth2.config.annotation.web.configurers.Res
 import org.springframework.security.oauth2.provider.token.RemoteTokenServices;
 import org.springframework.security.oauth2.provider.token.ResourceServerTokenServices;
 import org.springframework.security.oauth2.provider.token.TokenStore;
+import org.springframework.security.web.util.matcher.RequestMatcher;
+
+import javax.servlet.http.HttpServletRequest;
 
 @Configuration
 public class ResouceServerConfig extends ResourceServerConfigurerAdapter {
@@ -18,8 +23,20 @@ public class ResouceServerConfig extends ResourceServerConfigurerAdapter {
     private  static final String RESOURCE_ID ="res1"; //资源服务id
 
     @Autowired
+    private AjaxAuthenticationEntryPoint unauthorizedHandler;
+
+    @Autowired
     TokenStore tokenStore;
 
+
+    // 匹配ajax请求
+    public static class AjaxRequestMatcher implements RequestMatcher {
+        @Override
+        public boolean matches(HttpServletRequest request) {
+            return "XMLHttpRequest".equals(request.getHeader("X-Requested-With"))
+                    || request.getHeader("Accept") != null && request.getHeader("Accept").contains("application/json");
+        }
+    }
     /**
      * 资源服务配置信息
      * @param resources
@@ -43,12 +60,16 @@ public class ResouceServerConfig extends ResourceServerConfigurerAdapter {
 
         http
                 .authorizeRequests()
-                .antMatchers("/profile/**","/banner/**").permitAll()
-                .antMatchers("/index").permitAll()
-                .antMatchers("/**").access("#oauth2.hasScope('ROLE_ADMIN')")   //校验令牌范围是不是all
-                .and().csrf().disable()
-                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+                .antMatchers(HttpMethod.OPTIONS).permitAll()    //接收所有请求
+                .antMatchers("/profile/banner/**","/profile/novel/**","/index","/banner/upload").permitAll()
+                .anyRequest().authenticated()  //校验令牌范围是不是all
+                .and().cors().and().csrf().disable()
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .and()
+                .exceptionHandling()
+                .defaultAuthenticationEntryPointFor(unauthorizedHandler, new AjaxRequestMatcher());;
     }
+
 
     /**
      * 资源服务令牌解析服务
