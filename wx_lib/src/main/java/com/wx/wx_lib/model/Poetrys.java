@@ -6,30 +6,16 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
-import java.util.List;
-
 @Data
-@TableName("poetrys")
-public class Poetry {
+@TableName("poetry")
+public class Poetrys {
 
     @TableId(type = IdType.AUTO)
     private Integer id;
-    /**
-     * 诗人
-     */
+    @TableField("author_id")
+    private Integer authorId;
+    private String title;
+    private String content;
     private String author;
-
-    /**
-     * 封面
-     */
-    private String imgLink;
-
-    /**
-     * 简介
-     */
-    @TableField("brief_introduction")
-    private String briefIntroduction;
-
-    @TableField(exist = false)
-    private List<Article> children;
+    private String dynasty;
 }
