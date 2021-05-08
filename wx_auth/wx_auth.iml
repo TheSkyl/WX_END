@@ -52,6 +52,7 @@
     <orderEntry type="library" name="Maven: org.springframework:spring-jdbc:5.2.6.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-tx:5.2.6.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.bouncycastle:bcprov-jdk15on:1.52" level="project" />
+    <orderEntry type="library" name="Maven: com.belerweb:pinyin4j:2.5.1" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter:2.2.7.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot:2.2.7.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-context:5.2.6.RELEASE" level="project" />

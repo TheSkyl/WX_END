@@ -42,6 +42,7 @@
     <orderEntry type="module" module-name="wx_lib" />
     <orderEntry type="library" name="Maven: io.jsonwebtoken:jjwt:0.9.1" level="project" />
     <orderEntry type="library" name="Maven: org.bouncycastle:bcprov-jdk15on:1.52" level="project" />
+    <orderEntry type="library" name="Maven: com.belerweb:pinyin4j:2.5.1" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter-oauth2-client:2.2.7.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: com.sun.mail:jakarta.mail:1.6.5" level="project" />
     <orderEntry type="library" name="Maven: com.sun.activation:jakarta.activation:1.2.2" level="project" />
