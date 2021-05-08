@@ -35,12 +35,6 @@ public class NovelServiceImpl extends ServiceImpl<NovelMapper, Novel> implements
     @Override
     public List<Novel> getAll(Map<Integer, List<Article>> articleMap) {
         List<Novel> novelList = baseMapper.selectList(null);
-//        novelList.get(0).setChildren(articleMap.get(64));
-//        for (int i = 0; i < novelList.size(); i++) {
-//            if (articleMap.containsKey(novelList.get(i).getId()) == true){
-//                novelList.get(i).setChildren(articleMap.get(novelList.get(i).getId()));
-//            }
-//        }
         novelList.forEach(novelLists -> {
             if (articleMap.containsKey(novelLists.getId())) {
                 System.out.println(articleMap.get(novelLists.getId()));

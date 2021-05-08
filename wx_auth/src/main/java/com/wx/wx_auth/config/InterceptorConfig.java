@@ -26,7 +26,7 @@ public class InterceptorConfig implements WebMvcConfigurer{
         System.out.println("启动拦截");
         registry.addInterceptor(tokenInterceptor)
                 .addPathPatterns("/**")
-                .excludePathPatterns("/ban/Banner","/test/auths","/img/**","/nov/novel","/famousWorks/**","/chains/getAll","/poetry/**","/profile/**/**");
+                .excludePathPatterns("/poetryAuthor/**","/ban/Banner","/test/auths","/img/**","/nov/novel","/famousWorks/**","/chains/getAll","/poetry/**","/profile/**/**","/poetrys/**");
     }
 
     @Override
