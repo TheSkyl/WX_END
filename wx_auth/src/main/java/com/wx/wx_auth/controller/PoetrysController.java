@@ -1,5 +1,6 @@
 package com.wx.wx_auth.controller;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.wx.wx_lib.model.Article;
@@ -28,6 +29,15 @@ public class PoetrysController {
         Poetrys list = service.getById(1);
         IPage<Poetrys> ll = service.page(page);
         System.out.println(list);
+        return UnifyResult.ok().data("poetry",ll);
+    }
+
+    @GetMapping("/page")
+    public UnifyResult getPoetryPage(Integer pageNum, Integer pageSize,String author){
+        Page<Poetrys> page = new Page<>(pageNum,10);
+//        Poetrys list = service.getById(1);
+        IPage<Poetrys> ll = service.page(page,new QueryWrapper<Poetrys>().eq("author","李白"));
+//        System.out.println(list);
         return UnifyResult.ok().data("poetry",ll);
     }
 

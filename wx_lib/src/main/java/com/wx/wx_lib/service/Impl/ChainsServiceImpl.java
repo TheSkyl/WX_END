@@ -38,10 +38,10 @@ public class ChainsServiceImpl extends ServiceImpl<ChainsDao, Chains> implements
         Map<String,Object> map = new Hashtable<>();
         map.put("name",values);
         List<Cy> result = cyDao.selectByMap(map);
-        if (result.size() == 0){
-            log.info("此成语不存在="+values,values);
-            return false;
-        }
+//        if (result.size() == 0){
+//            log.info("此成语不存在="+values,values);
+//            return false;
+//        }
         HanyuPinyinOutputFormat format = new HanyuPinyinOutputFormat();
 //        format.setCaseType(HanyuPinyinCaseType.UPPERCASE);//大写
         //format.setCaseType(HanyuPinyinCaseType.LOWERCASE);//小写
@@ -57,9 +57,9 @@ public class ChainsServiceImpl extends ServiceImpl<ChainsDao, Chains> implements
         char valueEnd = values.charAt(0); //获取第一个字
         String cy = Arrays.toString(PinyinHelper.toHanyuPinyinStringArray(end,format));
         String value = Arrays.toString(PinyinHelper.toHanyuPinyinStringArray(valueEnd,format));
-        if (value.contains(cy)){
+        if (value.equals(cy)){
             Chains chains1 = new Chains();
-            chains1.setContent(result.get(0).getContent());
+//            chains1.setContent(result.get(0).getContent());
             chains1.setName(values);
             baseMapper.insert(chains1);
             return true;

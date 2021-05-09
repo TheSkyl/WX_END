@@ -1,9 +1,14 @@
 package com.wx.wx_auth.controller;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.wx.wx_lib.model.Article;
 import com.wx.wx_lib.model.Poetry;
+import com.wx.wx_lib.model.PoetryAuthor;
+import com.wx.wx_lib.model.Poetrys;
 import com.wx.wx_lib.service.ArticleService;
+import com.wx.wx_lib.service.PoetryAuthorService;
 import com.wx.wx_lib.service.PoetryService;
+import com.wx.wx_lib.service.PoetrysService;
 import com.wx.wx_lib.utils.UnifyResult;
 import io.swagger.models.auth.In;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +28,11 @@ public class PoetryController {
     private PoetryService service;
 
     @Autowired
+    private PoetrysService poetrysService;
+    @Autowired
+    private PoetryAuthorService authorService;
+
+    @Autowired
     private ArticleService articleService;
 
     @RequestMapping("/page")
@@ -34,12 +44,22 @@ public class PoetryController {
         return UnifyResult.ok().data("poetry",list);
     }
 
+    @RequestMapping("/pagesss")
+    public UnifyResult getAllByPages(Integer pageNum, Integer pageSize, String keyword){
+//        Page<Novel> page = new Page<>(pageNum,pageSize);
+        //0查询小说，1查询名著，2查询诗词
+//        Map<Integer, List<Poetrys>> map = articleService.getAll();
+        List<PoetryAuthor> list = authorService.list(new QueryWrapper<PoetryAuthor>().last("limit 6"));
+        System.out.println(list.toString());
+        return UnifyResult.ok().data("poetry",list);
+    }
+
     @RequestMapping("/catalogue")
-    public UnifyResult getCatalogue(Integer id){
+    public UnifyResult getCatalogue(String id){
         Map<String,Object> map = new Hashtable<>();
-        map.put("novel_id",id);
-        map.put("type",2);
-        List<Article> list = articleService.listByMap(map);
+        map.put("author",id);
+//        map.put("type",2);
+        List<Poetrys> list = poetrysService.listByMap(map);
         return  UnifyResult.ok().data("catalogue",list);
     }
 
