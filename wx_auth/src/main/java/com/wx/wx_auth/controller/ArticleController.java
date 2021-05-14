@@ -28,7 +28,7 @@ public class ArticleController {
     }
 
     @RequestMapping("/catalogue")
-    public UnifyResult getCatalogue(Integer id,Integer type){
+    public UnifyResult getCatalogue(Integer id,String type){
         Map<String,Object> map = new Hashtable<>();
         map.put("novel_id",id);
         map.put("type",type);

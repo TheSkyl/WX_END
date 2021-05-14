@@ -34,7 +34,6 @@ public class ChainsServiceImpl extends ServiceImpl<ChainsDao, Chains> implements
 
     @Override
     public Boolean add(String values) throws BadHanyuPinyinOutputFormatCombination {
-        boolean flag = false;
         Map<String,Object> map = new Hashtable<>();
         map.put("name",values);
         List<Cy> result = cyDao.selectByMap(map);
@@ -54,17 +53,17 @@ public class ChainsServiceImpl extends ServiceImpl<ChainsDao, Chains> implements
 //        Chains chains = baseMapper.selectOne(new QueryWrapper<Chains>().orderByDesc("id").last("limit 1"));
 //        char end = chains.getName().charAt(chains.getName().length()-1);
         char end = Character.valueOf(this.getEnd());    //获取最后一个字
-        char valueEnd = values.charAt(0); //获取第一个字
-        String cy = Arrays.toString(PinyinHelper.toHanyuPinyinStringArray(end,format));
-        String value = Arrays.toString(PinyinHelper.toHanyuPinyinStringArray(valueEnd,format));
-        if (value.equals(cy)){
+//        char valueEnd = values.charAt(0); //获取第一个字
+//        String cy = Arrays.toString(PinyinHelper.toHanyuPinyinStringArray(end,format));
+//        String value = Arrays.toString(PinyinHelper.toHanyuPinyinStringArray(valueEnd,format));
+        if (values.equals(end)){
             Chains chains1 = new Chains();
 //            chains1.setContent(result.get(0).getContent());
             chains1.setName(values);
             baseMapper.insert(chains1);
             return true;
         }
-        return null;
+        return false;
     }
 
     @Override

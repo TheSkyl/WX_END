@@ -32,7 +32,7 @@ public class Article implements Serializable {
     /**
      * 类型 0，1，2
      */
-    private Integer type;
+    private String type;
 
     /**
      * 所属书本id
@@ -82,11 +82,11 @@ public class Article implements Serializable {
         this.chapter = chapter;
     }
 
-    public Integer getType() {
+    public String getType() {
         return type;
     }
 
-    public void setType(Integer type) {
+    public void setType(String type) {
         this.type = type;
     }
 

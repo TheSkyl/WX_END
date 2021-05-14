@@ -9,18 +9,22 @@ import lombok.Data;
 import java.util.List;
 
 @Data
-@TableName("poetry_author_banner")
-public class PoetryAuthorBanner {
+@TableName("learing_banner")
+public class LearingBanner {
 
     @TableId(type = IdType.AUTO)
     private Integer id;
 
     private String name;
 
-    private String intro;
-    private String dynasty;
+    //0小说，1名著，2诗，3论语，4诗经
+    private String type;
+    /**
+     * 图片地址
+     */
     @TableField("img_link")
     private String imgLink;
-    @TableField(exist = false)
-    private List<Poetrys> children;
+
+    private String sequence;
+    private Boolean ban;
 }

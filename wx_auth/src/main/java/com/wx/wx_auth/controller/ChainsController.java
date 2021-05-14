@@ -32,7 +32,7 @@ public class ChainsController {
         if (result == null){
             return UnifyResult.ok().data("msg","接龙失败");
         }else if (result == false){
-            return UnifyResult.ok().data("msg","此成语不存在");
+            return UnifyResult.ok().data("msg","接龙失败");
         }
         return UnifyResult.ok().data("msg","接龙成功");
     }

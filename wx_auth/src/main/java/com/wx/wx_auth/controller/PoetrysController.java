@@ -34,10 +34,15 @@ public class PoetrysController {
 
     @GetMapping("/page")
     public UnifyResult getPoetryPage(Integer pageNum, Integer pageSize,String author){
-        Page<Poetrys> page = new Page<>(pageNum,10);
-//        Poetrys list = service.getById(1);
-        IPage<Poetrys> ll = service.page(page,new QueryWrapper<Poetrys>().eq("author","李白"));
-//        System.out.println(list);
+        Page<Poetrys> page = new Page<>(pageNum,pageSize);
+        IPage<Poetrys> ll = service.page(page,new QueryWrapper<Poetrys>().like("author",author));
+        return UnifyResult.ok().data("poetry",ll);
+    }
+
+    @GetMapping("/pageAll")
+    public UnifyResult getPoetryPageAll(Integer pageNum, Integer pageSize){
+        Page<Poetrys> page = new Page<>(pageNum,pageSize);
+        IPage<Poetrys> ll = service.page(page);
         return UnifyResult.ok().data("poetry",ll);
     }
 
