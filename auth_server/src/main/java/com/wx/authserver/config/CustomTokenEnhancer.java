@@ -26,7 +26,7 @@ public class CustomTokenEnhancer implements TokenEnhancer {
     @Override
     public OAuth2AccessToken enhance(OAuth2AccessToken oAuth2AccessToken, OAuth2Authentication oAuth2Authentication) {
         QueryWrapper<Users> objectQueryWrapper = new QueryWrapper<>();
-        objectQueryWrapper.eq("username","Zc");
+        objectQueryWrapper.eq("username",oAuth2Authentication.getName());
         System.out.println(oAuth2Authentication.getName());
         Users users = mapper.selectOne(objectQueryWrapper);
         Map<String,Object> map = new HashMap<>();

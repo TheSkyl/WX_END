@@ -3,8 +3,12 @@ package com.wx.lib.controller;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.wx.wx_lib.model.CET4;
-import com.wx.wx_lib.service.CET4Service;
+import com.wx.wx_lib.model.Lunyu;
+import com.wx.wx_lib.model.Poems;
+import com.wx.wx_lib.model.Shijing;
+import com.wx.wx_lib.service.LunyuService;
+import com.wx.wx_lib.service.PoemsService;
+import com.wx.wx_lib.service.ShijingService;
 import com.wx.wx_lib.utils.UnifyResult;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,34 +16,34 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/cet4")
-public class CET4Controller {
+@RequestMapping("/lunyu")
+public class LunyuController {
 
     @Autowired
-    private CET4Service service;
+    private LunyuService service;
 
     @RequestMapping("/page")
     public UnifyResult getAllByPage(Integer pageNum, Integer pageSize, String keyword){
-        Page<CET4> page = new Page<>(pageNum,pageSize);
+        Page<Lunyu> page = new Page<>(pageNum,pageSize);
         //0查询小说，1查询名著，2查询诗词
-        IPage<CET4> list = service.page(page);
+        IPage<Lunyu> list = service.page(page);
         if (StringUtils.isNotEmpty(keyword)){
             System.out.println(keyword);
-            list= service.page(page,new QueryWrapper<CET4>().like("headWord",keyword));
+            list= service.page(page,new QueryWrapper<Lunyu>().like("title",keyword));
         }
-
-        return UnifyResult.ok().data("cetList",list);
+        return UnifyResult.ok().data("lunyu",list);
     }
 
     @PostMapping("/add")
-    public UnifyResult save(@RequestBody CET4 cet4){
-        service.save(cet4);
+    public UnifyResult save(@Validated @RequestBody Lunyu poetry){
+        service.save(poetry);
         return UnifyResult.ok();
     }
 
     @GetMapping("/getById/{id}")
     public UnifyResult getById(@PathVariable Integer id){
-        return UnifyResult.ok().data("cetList",service.getById(id));
+
+        return UnifyResult.ok().data("lunyu",service.getById(id));
     }
 
     @DeleteMapping("/delById/{id}")
@@ -49,8 +53,8 @@ public class CET4Controller {
     }
 
     @PutMapping("/update")
-    public UnifyResult update(@Validated @RequestBody CET4 cet4){
-        service.updateById(cet4);
+    public UnifyResult update(@Validated @RequestBody Lunyu lunyu){
+        service.updateById(lunyu);
         return UnifyResult.ok();
     }
 }

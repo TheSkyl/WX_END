@@ -27,6 +27,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private UserDetailsService userDetailsService;
 
+    @Autowired
+    private CustomLogoutSuccessHandler logoutSuccessHandler;
+
     @Bean
     PasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();
@@ -45,24 +48,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-//        http.formLogin()    //自定义编写的登录页面
-//                .loginPage("/login.html")   //登录页面设置
-//                .loginProcessingUrl("/user/login")    //登录的访问路径
-//                .defaultSuccessUrl("/index.html").permitAll()  //登录成功后的跳转页面
-//                .and().authorizeRequests()          //定义那些url需要认证才能访问，那些不需要认证就能访问
-//                    .antMatchers("/","/test/hello","user/login").permitAll()    //访问这几个路径不需要认证
-                    //hasAuthority针对需要某个权限才能访问的页面
-//                    .antMatchers("/test/admin").hasAuthority("ADMIN")
-                    //hasAnyAuthority只要具有"ADMIN","MANAGER"其中一个权限就可以访问/test/admin
-//                    .antMatchers("/test/admin").hasAnyAuthority("ADMIN","MANAGER")
-                //需要具有sale角色才可以访问test/admin
-//                .antMatchers("/test/admin").hasRole("p2")
-//                .antMatchers("/test/indexs").hasRole("p1")
-//                .antMatchers("/test/manager").hasRole("p3")
-//                .anyRequest().authenticated()   //除上面外的所有请求都需要认证才能访问
-//                .and().csrf().disable(); //关闭csrf防护
-//        http.exceptionHandling().accessDeniedPage("/403.html"); //没有权限就跳转到403页面
-        //安全拦截机制
         http
                 .authorizeRequests()
                 .antMatchers("/actuator/**", "/login", "/exit", "/index","/login/**","/oauth/**", "/favicon.ico", "/swagger/**", "/oauth/token","/profile/**").permitAll()
@@ -70,8 +55,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //                .requestMatchers(CorsUtils::isPreFlightRequest).permitAll()
 //                .permitAll()
                 .anyRequest().authenticated()
+                .and().formLogin().loginPage("/login").failureUrl("/login-error").permitAll()
                 .and()
-                .formLogin()
+                .logout()
+                .logoutSuccessHandler(logoutSuccessHandler)
                 .and()
                 .cors().and().csrf().disable();
     }

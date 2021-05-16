@@ -22,19 +22,19 @@ public class ShijingController {
         Page<Shijing> page = new Page<>(pageNum,pageSize);
         //0查询小说，1查询名著，2查询诗词
         IPage<Shijing> list = service.page(page);
-        return UnifyResult.ok().data("poetry",list);
+        return UnifyResult.ok().data("shijing",list);
     }
 
     @PostMapping("/add")
-    public UnifyResult save(@Validated @RequestBody Shijing poetry){
-        service.save(poetry);
+    public UnifyResult save(@Validated @RequestBody Shijing shijing){
+        service.save(shijing);
         return UnifyResult.ok();
     }
 
     @GetMapping("/getById/{id}")
     public UnifyResult getById(@PathVariable Integer id){
 
-        return UnifyResult.ok().data("poetry",service.getById(id));
+        return UnifyResult.ok().data("shijing",service.getById(id));
     }
 
     @DeleteMapping("/delById/{id}")
@@ -44,8 +44,8 @@ public class ShijingController {
     }
 
     @PutMapping("/update")
-    public UnifyResult update(@Validated @RequestBody Shijing poetry){
-        service.updateById(poetry);
+    public UnifyResult update(@Validated @RequestBody Shijing shijing){
+        service.updateById(shijing);
         return UnifyResult.ok();
     }
 }

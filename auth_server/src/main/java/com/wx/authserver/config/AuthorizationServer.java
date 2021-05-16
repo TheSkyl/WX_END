@@ -134,6 +134,7 @@ public class AuthorizationServer extends AuthorizationServerConfigurerAdapter {
         endpoints.userDetailsService(userDetailsService);
 
         TokenEnhancerChain tokenEnhancerChain = new TokenEnhancerChain();
+        //token自定义携带信息 tokenEnhancers() accessTokenConverter开启jwt令牌
         tokenEnhancerChain.setTokenEnhancers(Arrays.asList(tokenEnhancers(),accessTokenConverter));
 
         endpoints.tokenEnhancer(tokenEnhancerChain);
