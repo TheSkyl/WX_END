@@ -30,7 +30,7 @@ public class Article implements Serializable {
      */
     private String chapter;
     /**
-     * 类型 0，1，2
+     * 类型
      */
     private String type;
 

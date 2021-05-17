@@ -1,5 +1,6 @@
 package com.wx.lib.controller;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.wx.wx_lib.model.Article;
@@ -11,7 +12,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("article")
+@RequestMapping("/article")
 public class ArticleController {
 
     @Autowired
@@ -20,8 +21,8 @@ public class ArticleController {
     @RequestMapping("/page")
     public UnifyResult getAllByPage(Integer pageNum, Integer pageSize, String keyword){
         Page<Article> page = new Page<>(pageNum,pageSize);
-        IPage<Article> iPage = service.page(page);
-        return UnifyResult.ok().data("page",iPage);
+        IPage<Article> iPage = service.page(page,new QueryWrapper<Article>().eq("type",keyword));
+        return UnifyResult.ok().data("article",iPage);
     }
 
     @PostMapping("/add")

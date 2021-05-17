@@ -27,6 +27,7 @@ public class ChainsController {
 
     @PostMapping("/add")
     public UnifyResult add(@RequestBody String chains) throws BadHanyuPinyinOutputFormatCombination {
+
         String v = chains.replace("\"","");
         Boolean result = service.add(v);
         if (result == null){

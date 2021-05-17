@@ -52,11 +52,11 @@ public class ChainsServiceImpl extends ServiceImpl<ChainsDao, Chains> implements
 //        format.setVCharType(HanyuPinyinVCharType.WITH_U_AND_COLON);// u:的声母
 //        Chains chains = baseMapper.selectOne(new QueryWrapper<Chains>().orderByDesc("id").last("limit 1"));
 //        char end = chains.getName().charAt(chains.getName().length()-1);
-        char end = Character.valueOf(this.getEnd());    //获取最后一个字
-//        char valueEnd = values.charAt(0); //获取第一个字
+        String end = String.valueOf(this.getEnd());    //获取最后一个字
+        String valueEnd = String.valueOf(values.charAt(0)); //获取第一个字
 //        String cy = Arrays.toString(PinyinHelper.toHanyuPinyinStringArray(end,format));
 //        String value = Arrays.toString(PinyinHelper.toHanyuPinyinStringArray(valueEnd,format));
-        if (values.equals(end)){
+        if (valueEnd.equals(end)){
             Chains chains1 = new Chains();
 //            chains1.setContent(result.get(0).getContent());
             chains1.setName(values);

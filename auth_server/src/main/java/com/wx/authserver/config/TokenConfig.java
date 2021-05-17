@@ -23,12 +23,10 @@ public class TokenConfig {
 
     @Bean
     public JwtAccessTokenConverter accessTokenConverter(){
-
         JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
         converter.setSigningKey(SIGNING_KEY);   //对称密钥，资源服务器使用该密钥进行验证
         converter.setAccessTokenConverter(new com.auth.authserver.config.CustomAccessTokenConverter()); //将定制的AccessToken 转换器添加到JWT
         return converter;
-
     }
 
 }
