@@ -20,6 +20,7 @@ public class CET4 {
 
     @TableField(typeHandler = JacksonTypeHandler.class)
     private JSONObject content;
+
     @TableField("bookId")
     private String bookId;
 

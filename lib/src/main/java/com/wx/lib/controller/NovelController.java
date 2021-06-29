@@ -39,9 +39,6 @@ public class NovelController {
             System.out.println(keyword);
             list= service.page(page,new QueryWrapper<Novel>().like("title",keyword));
         }
-//        //0查询小说，1查询名著，2查询诗词
-//        Map<Integer, List<Article>> map = articleService.getAll(0);
-//        List<Novel> list = service.getAll(map);
         return UnifyResult.ok().data("novel",list);
     }
 
